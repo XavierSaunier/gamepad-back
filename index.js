@@ -11,6 +11,8 @@ app.get("/", (req, res) => {
 
 const frontPageRoute = require("./routes/frontPage");
 app.use(frontPageRoute);
+const devRoute = require("./routes/developers");
+app.use(devRoute);
 
 app.all("*", (req, res) => {
   res.status(400).json({ message: "page not found" });

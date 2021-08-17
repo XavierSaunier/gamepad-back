@@ -5,8 +5,35 @@ const axios = require("axios");
 //frontpage
 router.get("/games", async (req, res) => {
   try {
+    let page = req.query.page;
+    let page_size = req.query.page_size;
+    let search = req.query.search;
+    if (search === undefined) {
+      search = "";
+    }
+    let developers = req.query.developers;
+    if (developers === undefined) {
+      developers = "";
+    }
+    let platforms = req.query.platforms;
+    if (platforms === undefined) {
+      platforms = "";
+    }
+    let publishers = req.query.publishers;
+    if (publishers === undefined) {
+      publishers = "";
+    }
+    let genres = req.query.genres;
+    if (genres === undefined) {
+      genres = "";
+    }
+    let tags = req.query.tags;
+    if (tags === undefined) {
+      tags = "";
+    }
+
     const response = await axios.get(
-      `https://api.rawg.io/api/games?key=${process.env.GAMEPAD_API_KEY}`
+      `https://api.rawg.io/api/games?key=${process.env.GAMEPAD_API_KEY}&skip=${page}&limit=${page_size}&search=${search}`
     );
 
     res.json(response.data);
