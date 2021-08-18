@@ -33,7 +33,7 @@ router.get("/games", async (req, res) => {
     }
 
     const response = await axios.get(
-      `https://api.rawg.io/api/games?key=${process.env.GAMEPAD_API_KEY}&skip=${page}&limit=${page_size}&search=${search}`
+      `https://api.rawg.io/api/games?key=${process.env.GAMEPAD_API_KEY}&page=${page}&page_size=${page_size}&search=${search}`
     );
 
     res.json(response.data);
