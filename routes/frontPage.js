@@ -6,7 +6,13 @@ const axios = require("axios");
 router.get("/games", async (req, res) => {
   try {
     let page = req.query.page;
+    if (page === undefined) {
+      page = 1;
+    }
     let page_size = req.query.page_size;
+    if (page_size === undefined) {
+      page_size = 10;
+    }
     let search = req.query.search;
     if (search === undefined) {
       search = "";
