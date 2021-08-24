@@ -97,3 +97,15 @@ router.get("/games/:id/movies", async (req, res) => {
 });
 
 module.exports = router;
+
+//genres
+router.get("/genres", async (req, res) => {
+  try {
+    const response = await axios.get(
+      `https://api.rawg.io/api/genres?key=${process.env.GAMEPAD_API_KEY}`
+    );
+    res.json(response.data);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
