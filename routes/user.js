@@ -65,4 +65,21 @@ router.post("/user/login", async (req, res) => {
   }
 });
 
+router.post("/user/add-fav", async (req, res) => {
+  try {
+    if (req.fields.id) {
+      console.log("passage");
+      const user = await User.findById(req.fields.id);
+      user.favorites.push(req.fields.newfav);
+      await user.save();
+
+      res.json(user);
+    } else {
+      res.status(400).json({ message: "Missing parameter" });
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 module.exports = router;
