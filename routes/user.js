@@ -68,7 +68,6 @@ router.post("/user/login", async (req, res) => {
 router.post("/user/add-fav", async (req, res) => {
   try {
     if (req.fields.id) {
-      console.log("passage");
       const user = await User.findById(req.fields.id);
       user.favorites.push(req.fields.newfav);
       await user.save();
